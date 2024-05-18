@@ -26,12 +26,14 @@ const fourDayDegreeElement = document.getElementById("four_day_degree");
 const fiveDayElement = document.getElementById("five_day");
 const fiveDayDegreeElement = document.getElementById("five_day_degree");
 
-const class_day =  document.querySelector(".day");
-const class_one_day =  document.querySelector(".one_day");
-const class_two_day =  document.querySelector(".two_day");
-const class_three_day =  document.querySelector(".three_day");
-const class_four_day =  document.querySelector(".four_day");
-const class_five_day =  document.querySelector(".five_day");
+const class_day = document.querySelector(".day");
+const class_one_day = document.querySelector(".one_day");
+const class_two_day = document.querySelector(".two_day");
+const class_three_day = document.querySelector(".three_day");
+const class_four_day = document.querySelector(".four_day");
+const class_five_day = document.querySelector(".five_day");
+
+const main_pages =document.querySelector(".main_pages");
 
 send.addEventListener("click", () => {
     const apiKey = '7f616499082a1f88bd07737fbf9768fd';
@@ -41,14 +43,14 @@ send.addEventListener("click", () => {
 
 search.addEventListener("keypress", (event) => {
     if (event.key === "Enter") {
-
+        const apiKey = '7f616499082a1f88bd07737fbf9768fd';
+        const city = search.value;
+       
+        getWeatherForecast(apiKey, city);
+        
     }
 });
 
-const apiKey = '7f616499082a1f88bd07737fbf9768fd';
-//const city = search.value;
-const city = "хуст"
-getWeatherForecast(apiKey, city);
 
 function getWeatherForecast(apiKey, city) {
     const url = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
@@ -70,7 +72,7 @@ function getWeatherForecast(apiKey, city) {
             if (!data.list || data.list.length === 0) {
                 throw new Error('Дані про прогноз погоди не отримані.');
             }
-
+            main_pages.style = 'filter: blur(0px)'
             // Прогноз на завтра
             const forecast = data.list[0];
             const forecast1 = data.list[1];
@@ -132,7 +134,7 @@ function getWeatherForecast(apiKey, city) {
             max_degree.innerHTML = "Макс-температура: " + Math.round(maxTemperature) + "°C";
             min_degree.innerHTML = "Мін-температура: " + Math.round(minTemperature) + "°C";
             //rain
-            rain.innerHTML = "Ймовірність опадів: " + rainProbability +'%';
+            rain.innerHTML = "Ймовірність опадів: " + rainProbability + '%';
             //sun
             up_p.innerHTML = sunrise.toLocaleTimeString();
             down_p.innerHTML = sunset.toLocaleTimeString();
@@ -144,31 +146,62 @@ function getWeatherForecast(apiKey, city) {
                 text.innerHTML = translatedDescription;
                 max_degree.innerHTML = "Макс-температура: " + Math.round(maxTemperature) + "°C";
                 min_degree.innerHTML = "Мін-температура: " + Math.round(minTemperature) + "°C";
-                rain.innerHTML = "Ймовірність опадів: " + rainProbability +'%';
+                rain.innerHTML = "Ймовірність опадів: " + rainProbability + '%';
                 up_p.innerHTML = sunrise.toLocaleTimeString();
                 down_p.innerHTML = sunset.toLocaleTimeString();
             });
-            class_one_day.addEventListener('click', () => { 
+            class_one_day.addEventListener('click', () => {
                 day.innerHTML = daysOfWeek[(dayIndex + 1) % daysOfWeek.length];
-                degree.innerHTML = Math.round(forecast.main.temp) + "°C";
-                text.innerHTML = translatedDescription;
-                max_degree.innerHTML = "Макс-температура: " + Math.round(maxTemperature) + "°C";
-                min_degree.innerHTML = "Мін-температура: " + Math.round(minTemperature) + "°C";
-                rain.innerHTML = "Ймовірність опадів: " + rainProbability +'%';
-                up_p.innerHTML = sunrise.toLocaleTimeString();
-                down_p.innerHTML = sunset.toLocaleTimeString();
+                degree.innerHTML = Math.round(forecast1.main.temp) + "°C";
+                text.innerHTML = translateDescription(forecast1.weather[0].description);
+                max_degree.innerHTML = "Макс-температура: " + Math.round(forecast1.main.temp_max) + "°C";
+                min_degree.innerHTML = "Мін-температура: " + Math.round(forecast1.main.temp_min) + "°C";
+                rain.innerHTML = "Ймовірність опадів: " + (forecast1.pop * 100) + '%';
+                up_p.innerHTML = '-'
+                down_p.innerHTML = '-'
             });
+            // Similarly, update the other event listeners using the same approach
+
             class_two_day.addEventListener('click', () => {
-             
+
+                day.innerHTML = daysOfWeek[(dayIndex + 2) % daysOfWeek.length];
+                degree.innerHTML = Math.round(forecast2.main.temp) + "°C";
+                text.innerHTML = translateDescription(forecast2.weather[0].description);
+                max_degree.innerHTML = "Макс-температура: " + Math.round(forecast2.main.temp_max) + "°C";
+                min_degree.innerHTML = "Мін-температура: " + Math.round(forecast2.main.temp_min) + "°C";
+                rain.innerHTML = "Ймовірність опадів: " + (forecast2.pop * 100) + '%';
+                up_p.innerHTML = '-'
+                down_p.innerHTML = '-'
             });
             class_three_day.addEventListener('click', () => {
-            
+                day.innerHTML = daysOfWeek[(dayIndex + 3) % daysOfWeek.length];
+                degree.innerHTML = Math.round(forecast3.main.temp) + "°C";
+                text.innerHTML = translateDescription(forecast3.weather[0].description);
+                max_degree.innerHTML = "Макс-температура: " + Math.round(forecast3.main.temp_max) + "°C";
+                min_degree.innerHTML = "Мін-температура: " + Math.round(forecast3.main.temp_min) + "°C";
+                rain.innerHTML = "Ймовірність опадів: " + (forecast3.pop * 100) + '%';
+                up_p.innerHTML = '-'
+                down_p.innerHTML = '-'
             });
             class_four_day.addEventListener('click', () => {
-               
+                day.innerHTML = daysOfWeek[(dayIndex + 4) % daysOfWeek.length];
+                degree.innerHTML = Math.round(forecast4.main.temp) + "°C";
+                text.innerHTML = translateDescription(forecast4.weather[0].description);
+                max_degree.innerHTML = "Макс-температура: " + Math.round(forecast4.main.temp_max) + "°C";
+                min_degree.innerHTML = "Мін-температура: " + Math.round(forecast4.main.temp_min) + "°C";
+                rain.innerHTML = "Ймовірність опадів: " + (forecast4.pop * 100) + '%';
+                up_p.innerHTML = '-'
+                down_p.innerHTML = '-'
             });
             class_five_day.addEventListener('click', () => {
-
+                day.innerHTML = daysOfWeek[(dayIndex + 5) % daysOfWeek.length];
+                degree.innerHTML = Math.round(forecast5.main.temp) + "°C";
+                text.innerHTML = translateDescription(forecast5.weather[0].description);
+                max_degree.innerHTML = "Макс-температура: " + Math.round(forecast5.main.temp_max) + "°C";
+                min_degree.innerHTML = "Мін-температура: " + Math.round(forecast5.main.temp_min) + "°C";
+                rain.innerHTML = "Ймовірність опадів: " + (forecast5.pop * 100) + '%';
+                up_p.innerHTML = '-'
+                down_p.innerHTML = '-'
             });
         })
         .catch(error => {
@@ -178,6 +211,24 @@ function getWeatherForecast(apiKey, city) {
 
 function translateDescription(description) {
     return translationDictionary[description.toLowerCase()] || description;
+}
+function translateDescription1(forecast) {
+    return translationDictionary[forecast.weather[0].description.toLowerCase()] || forecast.weather[0].description;
+}
+
+function translateDescription2(forecast) {
+    return translationDictionary[forecast.weather[0].description.toLowerCase()] || forecast.weather[0].description;
+}
+
+
+function translateDescription3(description3) {
+    return translationDictionary[description3.toLowerCase()] || description3;
+}
+function translateDescription4(description4) {
+    return translationDictionary[description4.toLowerCase()] || description4;
+}
+function translateDescription5(description5) {
+    return translationDictionary[description5.toLowerCase()] || description5;
 }
 
 const translationDictionary = {
