@@ -25,7 +25,13 @@ const fourDayElement = document.getElementById("four_day");
 const fourDayDegreeElement = document.getElementById("four_day_degree");
 const fiveDayElement = document.getElementById("five_day");
 const fiveDayDegreeElement = document.getElementById("five_day_degree");
-let forecast_number = 0
+
+const class_day =  document.querySelector(".day");
+const class_one_day =  document.querySelector(".one_day");
+const class_two_day =  document.querySelector(".two_day");
+const class_three_day =  document.querySelector(".three_day");
+const class_four_day =  document.querySelector(".four_day");
+const class_five_day =  document.querySelector(".five_day");
 
 send.addEventListener("click", () => {
     const apiKey = '7f616499082a1f88bd07737fbf9768fd';
@@ -122,6 +128,48 @@ function getWeatherForecast(apiKey, city) {
             fiveDayDegreeElement.innerHTML = Math.round(forecast5.main.temp) + "°C";
             //translatedDescription
             text.innerHTML = translatedDescription;
+            //max
+            max_degree.innerHTML = "Макс-температура: " + Math.round(maxTemperature) + "°C";
+            min_degree.innerHTML = "Мін-температура: " + Math.round(minTemperature) + "°C";
+            //rain
+            rain.innerHTML = "Ймовірність опадів: " + rainProbability +'%';
+            //sun
+            up_p.innerHTML = sunrise.toLocaleTimeString();
+            down_p.innerHTML = sunset.toLocaleTimeString();
+
+            //button clik
+            class_day.addEventListener('click', () => {
+                day.innerHTML = dayOfWeek;
+                degree.innerHTML = Math.round(forecast.main.temp) + "°C";
+                text.innerHTML = translatedDescription;
+                max_degree.innerHTML = "Макс-температура: " + Math.round(maxTemperature) + "°C";
+                min_degree.innerHTML = "Мін-температура: " + Math.round(minTemperature) + "°C";
+                rain.innerHTML = "Ймовірність опадів: " + rainProbability +'%';
+                up_p.innerHTML = sunrise.toLocaleTimeString();
+                down_p.innerHTML = sunset.toLocaleTimeString();
+            });
+            class_one_day.addEventListener('click', () => { 
+                day.innerHTML = daysOfWeek[(dayIndex + 1) % daysOfWeek.length];
+                degree.innerHTML = Math.round(forecast.main.temp) + "°C";
+                text.innerHTML = translatedDescription;
+                max_degree.innerHTML = "Макс-температура: " + Math.round(maxTemperature) + "°C";
+                min_degree.innerHTML = "Мін-температура: " + Math.round(minTemperature) + "°C";
+                rain.innerHTML = "Ймовірність опадів: " + rainProbability +'%';
+                up_p.innerHTML = sunrise.toLocaleTimeString();
+                down_p.innerHTML = sunset.toLocaleTimeString();
+            });
+            class_two_day.addEventListener('click', () => {
+             
+            });
+            class_three_day.addEventListener('click', () => {
+            
+            });
+            class_four_day.addEventListener('click', () => {
+               
+            });
+            class_five_day.addEventListener('click', () => {
+
+            });
         })
         .catch(error => {
             console.error(`Сталася помилка: ${error.message}`);
