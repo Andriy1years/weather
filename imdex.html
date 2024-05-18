@@ -12,7 +12,7 @@
 
 <body>
     <div id="register_menu">
-      
+
         <div class="center">
             <h2>Введіть своє місто</h2>
             <input id="search" type="search">
@@ -21,24 +21,29 @@
         </div>
     </div>
     <div class="main_pages">
+        <div class="main_panel">
+            <h2 id="misto">Погода у місті -:</h2>
+            <h1 id="degree">-℃</h1>
+            <p id="day"></p>
+            <p id="text"></p>
+            <p id = "max_degree">Максимальна температура: -℃</p>
+            <p id = "min_degree">Мінімальна температура: -℃</p>
+            <p>Ймовірність опадів: -%</p>
+        </div>
         <div class="back_graund">
-            <div class="the_bland">
+            <!--<div class="the_bland">
                 <img id="bland1" src="img/brand_icon.png" alt="bland">
                 <img id="bland2" src="img/brand_icon.png" alt="bland">
                 <img id="bland3" src="img/brand_icon.png" alt="bland">
-            </div>
+            </div>-->
         </div>
     </div>
 
     <!-- song-->
     <audio id="clickSound" src="mp3/001_42032.mp3"></audio>
 
-    <audio autoplay loop>
-        <source id="backgroundMusic" src="mp3/skvoznyak-32868.mp3" type="audio/mpeg">
-    </audio>
 
 
-    <script src="js/music.js"></script>
     <script src="js/main.js"></script>
     <script src="js/api_for_1_day.js"></script>
 </body>

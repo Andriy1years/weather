@@ -1,8 +1,7 @@
-.main_pages {
-    filter: blur(50px);
-}
+
 
 #register_menu {
+    display: none;
     position: absolute;
     z-index: 5;
     background-color: #f5f5dc38;
@@ -35,7 +34,7 @@
 }
 
 #search {
-
+    
     width: 200px;
     height: 50px;
     border-radius: 10px;
@@ -45,6 +44,11 @@
     font-size: 30px;
     font-family: 'Courier New', Courier, monospace;
     font-weight: 700;
+}
+#search:focus {
+    outline: none;
+    border: 2px solid  #363636; 
+    box-shadow: 0 0 10px  #363636;
 }
 
 #search:hover {
@@ -68,10 +72,11 @@
 
 
 #error {
-    
+    display: none;
     font-family: 'Courier New', Courier, monospace;
     color: red;
     font-weight: 1000;    
     margin-top: 5px;
     margin-left: 10px;
 }
+
