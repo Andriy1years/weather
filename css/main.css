@@ -9,7 +9,7 @@ body {
 
 
 .main_pages {
-    display: flex;
+
     position: absolute;
     background-color: #ffffff21;
     border: solid;
@@ -18,10 +18,98 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 1000px;
+    width: 800px;
     height: 500px;
 }
 
+.main_panel {
+    display: flex;
+}
+
+.main_panel img {
+    width: 30px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
 #misto {
-    margin-left: 30px;
+    display: flex;
+    position: relative;
+    margin-left: 20px;
+}
+
+#degree {
+
+    position: absolute;
+    margin-top: 120px;
+    margin-left: 20px;
+}
+
+.max-min-tempetature {
+    position: absolute;
+    top: 220px;
+    margin-left: 10px;
+}
+
+.max-min-tempetature p {
+    font-weight: 700;
+}
+
+#rain {
+    position: absolute;
+    font-weight: 700;
+    right: 0;
+    bottom: 0;
+    margin-bottom: 200px;
+    margin-right: 20px;
+}
+.sun {
+    position: absolute; 
+    width: 40px;
+    right: 0;
+}
+.sun img {
+    position: absolute; 
+    margin-top: 100px;
+    margin-left: -10px;
+   
+}
+
+.sun p {
+
+    margin-left: -35px;
+}
+
+#down {
+margin-top: 150px;
+}
+
+#up_p {
+    
+    margin-top: 105px;
+}
+#down_p {
+    margin-top: 29px;
+}
+
+.week {
+    display: flex;
+    position: absolute;
+    border-top: solid 2px #0000006c;
+    bottom: 0;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 35px;
+    padding-top: 10px;
+}
+.week div {
+    border-radius: 10px;
+    border: solid;
+    margin-left: 20px;
+    width: 100px;
+}
+
+.week p {
+    margin-left: 10px;
+    font-weight: 700;
 }
