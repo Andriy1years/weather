@@ -107,6 +107,10 @@ margin-top: 150px;
     border: solid;
     margin-left: 20px;
     width: 100px;
+    background-color: #0000001c;
+}
+.week div:hover {
+    background-color: #00000034;
 }
 
 .week p {
